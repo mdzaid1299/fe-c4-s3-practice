@@ -25,7 +25,7 @@ Reactive form created should resemble the following images:
 ![](./ViewTube-from-date.png)
  
 **Schedule Event Form With To DateTime Value**
-![](./ViewTube-to-date.pn)
+![](./ViewTube-to-date.png)
 
 **Schedule Event Form With Validation Errors**
 ![](./ViewTube-errors.png)
@@ -34,7 +34,7 @@ Reactive form created should resemble the following images:
 ![](./ViewTube-Valid-Values.png)
 
 **Successful Form Submission**
-![](./ViewTube-form-submission.png)
+![](./ViewTube-Form-submission.png)
 
 ### Task Details
 
@@ -77,7 +77,7 @@ The solution for this challenge can be created in 7 steps.​
     - Define the constructor to create a FormBuilder and MatSnackBar instance.​
       ```ts
       constructor (private fb: FormBuilder, private _snackBar: MatSnackBar){ }
-      ``​`
+    
     - Create a top-level form group instance called liveStream using the form builder service.​
     - The Form model should have 7 form controls each representing the properties eventTitle, fromDate, fromTime, toDate, toTime, description and guests.​
     - Add the necessary validators for each form control.
@@ -95,8 +95,7 @@ The solution for this challenge can be created in 7 steps.​
     -  Define getters for each of the liveStream form properties to access them in template. For e.g.​  
          ```ts
             get eventTitle(){return this.liveStream.get('eventTitle');}
-        ``​`
-​    
+        ​    
 #### Step 4: Add built-in and custom validators to the form controls
 
 - Following are the form controls with their validation criteria.​
@@ -117,7 +116,7 @@ The solution for this challenge can be created in 7 steps.​
 - Following logic can be used to check the validation inside the component,ts file.
 ​        
 ```ts
-           checkIfGuestEmailsAreValid(c: AbstractControl) {
+    checkIfGuestEmailsAreValid(c: AbstractControl) {
     if (c.value !== '') {
       const emailString = c.value;
       const emails = emailString.split(',').map((e: string) => e.trim());
