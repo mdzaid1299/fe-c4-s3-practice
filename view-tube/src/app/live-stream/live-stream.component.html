@@ -1,0 +1,96 @@
+ <div>
+    <mat-toolbar color="primary">
+       <h1>View Tube-Live Stream Event Form</h1>
+    </mat-toolbar>
+  </div>
+  
+  <form [formGroup]="liveStream" (ngSubmit)="onSubmit()">
+    <div class="example">
+    <mat-form-field appearance="fill" color="primary">
+        <mat-label >Add Event</mat-label>
+        <input matInput placeholder="EventTitle" type="text" name="eventTitle" id="eventTitle" formControlName="eventTitle" >
+        <mat-error *ngIf="eventTitle?.hasError('required')">Event Title is required</mat-error>
+         <mat-error *ngIf="eventTitle.hasError('maxlength')">
+         title should be of  maximun 100 word
+        </mat-error> 
+    </mat-form-field>
+  </div>
+    <br>
+   
+  
+    <mat-form-field appearance="fill" class="example">
+        <mat-label>From Date</mat-label>
+        <input matInput [min]="minDate"  [matDatepicker]="picker" formControlName="fromDate">
+       
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="fromDate.hasError('required')">date is required</mat-error>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" class="example">
+        <mat-label>From Time</mat-label>
+        <input type="text"
+               matInput
+               formControlName="fromTime"
+               required
+               [matAutocomplete]="autoGroup">
+          <mat-autocomplete #autoGroup="matAutocomplete">
+           
+              <mat-option *ngFor="let time of times" [value]="time">
+                {{time}}
+              </mat-option>
+          
+        </mat-autocomplete>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="example">
+        <mat-label>to Time</mat-label>
+        <input type="text"
+               matInput
+               formControlName="toTime"
+               required
+               [matAutocomplete]="autoGroup">
+          <mat-autocomplete #autoGroup="matAutocomplete">
+           
+              <mat-option *ngFor="let time of times" [value]="time">
+                {{time}}
+              </mat-option>
+          
+        </mat-autocomplete>
+      </mat-form-field>
+  
+  
+      <mat-form-field appearance="fill" class="example">
+        <mat-label> To Date</mat-label>
+        <input matInput [min]="minDate1" [matDatepicker]="picker1" formControlName="toDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <mat-error *ngIf="toDate.hasError('required')">date is required</mat-error>
+    </mat-form-field>
+    <br><br><br>
+  
+    <mat-form-field appearance="fill" color="primary" class="example">
+        <mat-label><h3>Description</h3></mat-label>
+        <textarea matInput placeholder="Description" rows="4" cols="30">
+        </textarea>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" color="primary" class="example">
+        <mat-label>Email</mat-label>
+        
+        <textarea  matInput type="email" placeholder="Email" formControlName="guestEmails"></textarea>
+        <mat-error *ngIf="guestEmails.hasError('required')">Event Title is required</mat-error>
+        <mat-error *ngIf="liveStream.hasError('checkIfGuestEmailsAreValid === false')">
+           One of the guests in the list has an invalid Method.
+        </mat-error>
+  
+    </mat-form-field>
+  <br>
+    <button class="example" type="submit" [disabled]="!liveStream.valid">Submit</button>
+   
+        
+  
+  </form>
+  
